@@ -1,0 +1,27 @@
+[
+  {
+    "studentId": "62xxxxx1",
+    "name": "Alice",
+    "githubUsername": "alice"
+  },
+  {
+    "studentId": "62xxxxx2",
+    "name": "Bob",
+    "githubUsername": "bob"
+  },
+  {
+    "studentId": "62xxxxx3",
+    "name": "Kate",
+    "githubUsername": "kate"
+  },
+  {
+    "studentId": "62xxxxx4",
+    "name": "James",
+    "githubUsername": "james"
+  },
+  {
+    "studentId": "62xxxxx5",
+    "name": "Peter",
+    "githubUsername": "peter"
+  }
+]

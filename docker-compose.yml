@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  fswd_code:
+    image: node:16-bullseye
+    environment:
+      TZ: Asia/Bangkok
+    volumes:
+      - type: bind
+        source: ./
+        target: /workspace/code
+    container_name: fswd_code
+    hostname: fswd_code
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    networks:
+      - gateway
+
+networks:
+  gateway:
+    external: true
