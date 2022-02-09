@@ -9,6 +9,9 @@ services:
       - type: bind
         source: ./
         target: /workspace/code
+      - ~/.ssh:/home/node/.ssh:cached
+      - ~/.gitconfig:/home/node/.gitconfig:cached
+      - ~/.gnupg:/home/node/.gnupg:cached
     container_name: fswd_code
     hostname: fswd_code
     command: /bin/sh -c "while sleep 1000; do :; done"

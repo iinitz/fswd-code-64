@@ -1,0 +1,14 @@
+{
+  "name": "Week 5",
+  "dockerComposeFile": [
+    "../../docker-compose.yml"
+  ],
+  "service": "fswd_code",
+  "shutdownAction": "none",
+  "workspaceFolder": "/workspace/code/week5",
+  "settings": {},
+  "extensions": [
+    "dbaeumer.vscode-eslint"
+  ],
+  "remoteUser": "node"
+}
