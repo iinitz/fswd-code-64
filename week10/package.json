@@ -1,0 +1,23 @@
+{
+  "name": "week10",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node -r @babel/register src/app.js"
+  },
+  "dependencies": {
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/register": "^7.17.7",
+    "apollo-server-core": "^3.6.5",
+    "apollo-server-express": "^3.6.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "graphql": "^16.3.0",
+    "graphql-compose": "^9.0.7",
+    "graphql-compose-mongoose": "^9.7.1",
+    "mongoose": "^6.2.8"
+  },
+  "devDependencies": {
+    "eslint-config-iinitz": "^0.2.6"
+  }
+}
