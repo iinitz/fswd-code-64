@@ -1,10 +1,10 @@
 import { createServer } from 'http'
 
-import { ApolloServerPluginDrainHttpServer, ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core'
+import { ApolloServerPluginDrainHttpServer, ApolloServerPluginLandingPageGraphQLPlayground, gql } from 'apollo-server-core'
 import { ApolloServer } from 'apollo-server-express'
 import cors from 'cors'
 import express from 'express'
-import { buildSchema } from 'graphql'
+// import { buildSchema } from 'graphql'
 
 const app = express()
 app.use(express.json())
@@ -15,20 +15,32 @@ app.get('/', (req, res) => {
   res.json({ message: 'Server running' })
 })
 
-const schema = buildSchema(`
+// const schema = buildSchema(`
+// type Query {
+//   hello (name: String!): String
+// }
+// `)
+// const root = {
+//   hello: (args) => `Hello ${args.name} from GraphQL API`,
+// }
+const typeDefs = gql`
 type Query {
   hello (name: String!): String
 }
-`)
-const root = {
-  hello: (args) => `Hello ${args.name} from GraphQL API`,
+`
+const resolvers = {
+  Query: {
+    hello: (source, args) => `Hello ${args.name} from GraphQL API`,
+  },
 }
 
 const startApolloServer = async () => {
   const httpServer = createServer(app)
   const apolloServer = new ApolloServer({
-    schema,
-    rootValue: root,
+    // schema,
+    // rootValue: root,
+    typeDefs,
+    resolvers,
     introspection: true,
     plugins: [
       ApolloServerPluginDrainHttpServer({ httpServer }),
