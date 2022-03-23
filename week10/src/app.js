@@ -24,13 +24,49 @@ app.get('/', (req, res) => {
 //   hello: (args) => `Hello ${args.name} from GraphQL API`,
 // }
 const typeDefs = gql`
+type User {
+  id
+  name
+}
+type Product {
+  id: String
+  name: String
+  price: Float
+  createdBy: User
+}
+input ProductInput {
+  name: String!
+  price: Float!
+}
 type Query {
   hello (name: String!): String
+  products: [Product]
+  productId (id: String!): Product
+}
+type Mutation {
+  addProduct (product: ProductInput): Product
+  updateProduct (id: String! input: ProductInput): Product
+  deleteProduct (id: String): Boolean
 }
 `
 const resolvers = {
   Query: {
     hello: (source, args) => `Hello ${args.name} from GraphQL API`,
+    products: async () => {
+      const products = [{ name: 'iPhone 13 mini', price: 25_900 }, { name: 'iPhone 13', price: 29_900 }] // get from DB or API
+      const productWithUser = products.map((product) => ({
+        ...product,
+        createdBy: { id: 1, name: 'Admin' }, // get from DB or API
+      }))
+      return productWithUser
+    },
+  },
+  Mutation: {
+    addProduct: async (source, args) => {
+      const { product } = args
+      // implement add logic
+      return product
+    },
   },
 }
 
