@@ -1,5 +1,7 @@
 import { schemaComposer } from 'graphql-compose'
 
+// eslint-disable-next-line import/order
+import './relation'
 import * as mutations from './mutation'
 import * as queries from './query'
 

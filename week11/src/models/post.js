@@ -10,6 +10,12 @@ const PostSchema = new Schema({
     type: String,
     default: '',
   },
+  authorId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+    index: true,
+  },
 })
 export const PostModel = model('Post', PostSchema)
 

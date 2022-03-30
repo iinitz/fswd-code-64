@@ -2,6 +2,7 @@
   "extends": "iinitz/js-base",
   "rules": {
     "no-console": 0,
-    "max-len": 0
+    "max-len": 0,
+    "no-underscore-dangle": 0
   }
 }
