@@ -6,7 +6,7 @@ import { Posts } from './components/Posts'
 
 const POSTS_QUERY = gql`
 query ($postLimit: Int) {
-  posts (limit: $postLimit) {
+  posts (limit: $postLimit sort: _ID_DESC) {
     _id
     title
     content
