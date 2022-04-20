@@ -1,5 +1,5 @@
 {
-  "name": "week10",
+  "name": "week11",
   "version": "1.0.0",
   "scripts": {
     "start": "node -r @babel/register src/app.js"
