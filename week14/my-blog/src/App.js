@@ -1,6 +1,8 @@
 import { gql, useQuery } from '@apollo/client';
 
 import './App.css';
+import { CreatePost } from './components/CreatePost';
+import { Posts } from './components/Posts'
 
 const POSTS_QUERY = gql`
 query ($postLimit: Int) {
@@ -34,19 +36,10 @@ const App = () => {
     return <h4>Error: {error.message}</h4>
   }
   return (
-    <div>
-      <h4>Posts</h4>
-      <div>
-        {data.posts.map((post) => (
-          <div key={post._id}>
-            <h5>{post.title}</h5>
-            <p>{post.content}</p>
-            <p>{post.author.fullname}</p>
-          </div>
-        ))}
-      </div>
-      <button type="button" onClick={() => refetch({ postLimit: 4 })}>Refetch posts</button>
-    </div>
+    <main style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+      <Posts posts={data.posts} refetch={refetch} />
+      <CreatePost refetch={refetch} />
+    </main>
   );
 }
 
