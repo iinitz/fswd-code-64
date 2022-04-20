@@ -1,5 +1,14 @@
-import { gql, useMutation } from "@apollo/client"
+import { gql, useMutation, useQuery } from "@apollo/client"
 import { useCallback, useState } from "react"
+
+const USERS_QUERY = gql`
+query {
+  users {
+    _id
+    fullname
+  }
+}
+`
 
 const CREATE_POST_MUTATION = gql`
 mutation ($record: CreateOnePostInput!) {
@@ -13,6 +22,7 @@ export const CreatePost = ({ refetch }) => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [authorId, setAuthorId] = useState('')
+  const { data } = useQuery(USERS_QUERY)
   const [createPostMutation] = useMutation(CREATE_POST_MUTATION)
   const handleCreatePost = useCallback(
     async (e) => {
@@ -48,7 +58,12 @@ export const CreatePost = ({ refetch }) => {
           Content: <textarea value={content} onChange={(e) => setContent(e.target.value)} />
         </div>
         <div>
-          AuthorId: <input value={authorId} onChange={(e) => setAuthorId(e.target.value)} />
+          {/* AuthorId: <input value={authorId} onChange={(e) => setAuthorId(e.target.value)} /> */}
+          Author: <select value={authorId} onChange={(e) => setAuthorId(e.target.value)}>
+            {data?.users?.map((user) => (
+              <option key={user._id} value={user._id}>{user.fullname}</option>
+            ))}
+          </select>
         </div>
         <button type="submit">Create</button>
       </form>
