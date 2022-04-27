@@ -1,7 +1,6 @@
 // import { AuthenticationError, UserInputError } from 'apollo-server-core'
 import { schemaComposer } from 'graphql-compose'
 
-import { checkPassword } from '../../lib/checkPassword'
 import { generateUserToken } from '../../lib/generateUserToken'
 import { UserModel, UserTC } from '../../models/user'
 
@@ -33,7 +32,7 @@ export const login = schemaComposer.createResolver({
         token: null,
       }
     }
-    const validPassword = checkPassword(user.password, password)
+    const validPassword = await user.verifyPassword(password)
     if (!validPassword) {
       // throw new AuthenticationError('Password incorrect')
       return {

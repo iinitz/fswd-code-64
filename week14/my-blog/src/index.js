@@ -7,8 +7,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:3001/graphql',
+  uri: process.env.GRAPHQL_URI,
   cache: new InMemoryCache(),
+  credentials: 'include', // allow send cookies to api
+  // headers: {
+  //   Authorization: 'Bearer TOKEN',
+  // }, // send token in headers
 })
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

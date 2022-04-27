@@ -1,5 +1,6 @@
 import { composeWithMongoose } from 'graphql-compose-mongoose'
 import { model, Schema } from 'mongoose'
+import mongooseBcrypt from 'mongoose-bcrypt'
 
 const UserSchema = new Schema({
   firstname: {
@@ -21,6 +22,7 @@ const UserSchema = new Schema({
   password: {
     type: String,
     required: true,
+    bcrypt: true,
   },
   email: {
     type: String,
@@ -37,6 +39,7 @@ const UserSchema = new Schema({
 }, {
   timestamps: true,
 })
+UserSchema.plugin(mongooseBcrypt)
 export const UserModel = model('User', UserSchema)
 
 export const UserTC = composeWithMongoose(UserModel)
